@@ -63,10 +63,26 @@ public class UserController { // main part of controller RESTapi
         }
     }
 
-//    @GetMapping("/")
-//    public List<User> login() {
-//        return userService.login();
-//    }
+
+    @PutMapping("/{username}/trades/amend")
+    public ResponseEntity<User> addTradeToUserAmendment(@PathVariable String username, @RequestBody TradeAndOrder trade) {
+        User updatedUser = userService.amendTradeToUser(username, trade);
+        if (updatedUser != null) {
+            return ResponseEntity.ok(updatedUser);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @DeleteMapping("/{username}/trades/delete")
+    public ResponseEntity<User> deleteTradeFromUserAmendment(@PathVariable String username, @RequestBody TradeAndOrder trade) {
+        User updatedUser = userService.deleteTradeToUser(username, trade);
+        if (updatedUser != null) {
+            return ResponseEntity.ok(updatedUser);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
 
     @GetMapping("/api/v1/user/cash")
     public List<UserCash> whatevernamefunction(){

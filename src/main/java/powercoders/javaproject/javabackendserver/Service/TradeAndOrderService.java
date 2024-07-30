@@ -1,7 +1,9 @@
 package powercoders.javaproject.javabackendserver.Service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import powercoders.javaproject.javabackendserver.Modal.TradeAndOrder;
 import powercoders.javaproject.javabackendserver.Repository.ITradeAndOrderRepository;
 
@@ -19,10 +21,12 @@ public class TradeAndOrderService {
     }
 
     public List<TradeAndOrder> getAllTradesAndOrders() {
+
         return tradeAndOrderRepository.findAll();
     }
 
     public Optional<TradeAndOrder> getTradeAndOrderById(Long id) {
+
         return tradeAndOrderRepository.findById(id);
     }
 
@@ -30,7 +34,10 @@ public class TradeAndOrderService {
         return tradeAndOrderRepository.save(tradeAndOrder);
     }
 
-    public void deleteTradeAndOrder(Long id) {
+    @Transactional
+    public void deleteTradeAndOrderById(Long id) {
         tradeAndOrderRepository.deleteById(id);
     }
+
+
 }

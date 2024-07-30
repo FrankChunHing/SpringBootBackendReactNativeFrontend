@@ -1,12 +1,12 @@
 package powercoders.javaproject.javabackendserver.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import powercoders.javaproject.javabackendserver.Modal.TradeAndOrder;
 import powercoders.javaproject.javabackendserver.Service.TradeAndOrderService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class TradeAndOrderController {
@@ -29,8 +29,20 @@ public class TradeAndOrderController {
         this.TradeAndOrderService = tradeAndOrderService;
     }
 
-    @PostMapping("/api/v1/Order")
+    @GetMapping("/api/v1/Orders")
     public List<TradeAndOrder> tradeOrder() {
+        return TradeAndOrderService.getAllTradesAndOrders();
+    }
+
+    @GetMapping("/api/v1/Orders/{id}")
+    public Optional<TradeAndOrder> getTradeAndOrder(@PathVariable long id) {
+        return TradeAndOrderService.getTradeAndOrderById(id);
+    }
+
+
+    @DeleteMapping("/api/v1/Order/delete")
+    public List<TradeAndOrder> deleteTradeAndOrder(@RequestBody TradeAndOrder trade) {
+        TradeAndOrderService.deleteTradeAndOrderById(trade.getId());
         return TradeAndOrderService.getAllTradesAndOrders();
     }
 }

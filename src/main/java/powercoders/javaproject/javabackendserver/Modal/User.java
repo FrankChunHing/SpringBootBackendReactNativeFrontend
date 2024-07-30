@@ -1,6 +1,8 @@
 package powercoders.javaproject.javabackendserver.Modal;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -28,8 +30,10 @@ public class User {
     private String password;
 
 
+
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<TradeAndOrder> tradesAndOrders = new HashSet<>();
+    private List<TradeAndOrder> tradesAndOrders = new ArrayList<>();
 
 
     public User() {
@@ -74,11 +78,11 @@ public class User {
         this.password = password;
     }
 
-    public Set<TradeAndOrder> getTradesAndOrders() {
+    public List<TradeAndOrder> getTradesAndOrders() {
         return tradesAndOrders;
     }
 
-    public void setTradesAndOrders(Set<TradeAndOrder> tradesAndOrders) {
+    public void setTradesAndOrders(List<TradeAndOrder> tradesAndOrders) {
         this.tradesAndOrders = tradesAndOrders;
     }
 

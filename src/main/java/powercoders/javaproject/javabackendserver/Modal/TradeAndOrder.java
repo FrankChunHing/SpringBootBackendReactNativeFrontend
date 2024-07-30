@@ -52,6 +52,10 @@ public class TradeAndOrder {
 
     public TradeAndOrder() {}
 
+    public TradeAndOrder(long id) {
+        this.id = id;
+    }
+
     public TradeAndOrder(User user, boolean isClosed, boolean isExecuted, double price, double size, String side, String type, String symbol, double time, String user_name, long id) {
         this.user = user;
         this.isClosed = isClosed;

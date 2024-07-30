@@ -6,4 +6,5 @@ import powercoders.javaproject.javabackendserver.Modal.TradeAndOrder;
 
 @Repository
 public interface ITradeAndOrderRepository extends JpaRepository<TradeAndOrder, Long>{
+    void deleteTradeAndOrderById(long id);
 }
